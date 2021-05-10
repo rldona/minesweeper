@@ -6,8 +6,10 @@ export default function Board({ squares }) {
   return (
     <div className="Board">
       {
-        squares.map((square, index) => (
-          <Square key={index} square={square} />
+        squares.map((items, index) => (
+          items.map((subItems, sIndex) => (
+            <Square key={index + sIndex} square={subItems} squareList={squares} />
+          ))
         ))
       }
     </div>

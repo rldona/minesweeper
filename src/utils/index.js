@@ -2,28 +2,28 @@ const _generateMines = () => {
   let mines = [];
 
   for (let i = 0; i < 10; i++) {
-    mines.push(Math.floor((Math.random() * 90) + 1));
+    mines.push(Math.floor((Math.random() * 10) + 1));
   }
 
   return mines;
 }
 
 const generateBoard = () => {
-  let squareList = [];
-
   const mines = _generateMines();
 
-  for (let i = 0; i < 90; i++) {
-    squareList.push({
-      id: i,
-      hasMine: false
-    });
-  }
+  var squareList = Array.from(Array(10), () => new Array(10));
 
-  for (let i = 0; i < 90; i++) {
-    for (let j = 0; j < mines.length - 1; j++) {
-      if (squareList[i].id === mines[j]) {
-        squareList[i].hasMine = true;
+  for (let i = 0; i < 10; i++) {
+    for (let j = 0; j < 10; j++) {
+      squareList[i][j] = {
+        id: i,
+        file: i,
+        column: j,
+        hasMine: false
+      };
+
+      if (squareList[i][j].id === mines[j]) {
+        squareList[i][j].hasMine = true;
       }
     }
   }
