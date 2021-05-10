@@ -9,7 +9,7 @@ export default function Square({ square }) {
 
   return (
     <div className={`Square ${square.hasMine ? 'hasMine' : ''}`} onClick={explore}>
-      {/* { square } */}
+      { square.id }
     </div>
   );
 }
