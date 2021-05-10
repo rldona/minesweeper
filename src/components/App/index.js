@@ -1,8 +1,8 @@
 import { generateBoard } from '../../utils';
 
-import './App.css';
-
 import Board from '../Board';
+
+import './App.css';
 
 export default function App() {
   const squares = generateBoard();
