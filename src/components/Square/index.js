@@ -1,15 +1,14 @@
 import './Square.css';
 
-export default function Square({ square, hasMine }) {
+export default function Square({ square }) {
   const explore = () => {
-    console.log(square);
-    console.log(hasMine);
+    if (square.hasMine) {
+      alert('Game over');
+    }
   }
 
-  const hasMineClass = square.hasMine ? 'hasMine' : '';
-
   return (
-    <div className={`Square ${hasMineClass}`} onClick={explore}>
+    <div className={`Square ${square.hasMine ? 'hasMine' : ''}`} onClick={explore}>
       {/* { square } */}
     </div>
   );
