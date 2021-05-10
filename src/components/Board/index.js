@@ -1,14 +1,12 @@
-import { generateBoard } from '../../utils';
-
 import Square from '../Square';
 
 import './Board.css';
 
-export default function Board() {
+export default function Board({ squares }) {
   return (
     <div className="Board">
       {
-        generateBoard().map((square, index) => (
+        squares.map((square, index) => (
           <Square key={index} square={square} />
         ))
       }
