@@ -1,10 +1,10 @@
-// import { useState } from 'react';
-// import { detectSquareMines } from '../../utils';
+import { useState } from 'react';
+import { detectSquareMines } from '../../utils';
 
 import './Square.css';
 
 export default function Square({ squareList, square }) {
-  // const [ number, setNumber ] = useState(null);
+  const [ totalMines, setNumber ] = useState(null);
 
   const explore = () => {
     if (square.hasMine) {
@@ -12,8 +12,11 @@ export default function Square({ squareList, square }) {
       return 0;
     }
 
-    // const totalMinesDetected = detectSquareMines(squareList, square);
-    // setNumber(totalMinesDetected);
+    console.log(square);
+
+    const totalMinesDetected = detectSquareMines(squareList, square);
+
+    setNumber(totalMinesDetected);
 
     // No tiene minas, es una casilla en blanco
     // if (!totalMinesDetected) {
@@ -25,7 +28,8 @@ export default function Square({ squareList, square }) {
 
   return (
     <div className={`Square ${square.hasMine ? 'hasMine' : ''}`} onClick={explore}>
-      { square.totalMines }
+      { totalMines }
+      {/* { square.totalMines } */}
       {/* { square.id } */}
     </div>
   );
