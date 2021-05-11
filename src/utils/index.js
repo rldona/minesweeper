@@ -21,14 +21,14 @@ const generateBoard = () => {
         column: j,
         hasMine: false
       };
+
       const hastMine = squareList[i][j].id === mines[j];
+      const totalMines = detectSquareMines(squareList, squareList[i][j]);
 
       if (hastMine) {
         squareList[i][j].hasMine = true;
-      }
-
-      if (detectSquareMines(squareList, squareList[i][j]) > 0 && !hastMine) {
-        squareList[i][j].totalMines = detectSquareMines(squareList, squareList[i][j]);
+      } else {
+        squareList[i][j].totalMines = totalMines > 0 ? totalMines : null;
       }
     }
   }
@@ -73,11 +73,11 @@ const detectSquareMines = (squareList, square) => {
       centerRight = squareList[file][columnPlus].hasMine ? 1 : 0;
     }
 
-    if ( typeof squareList[filePlus][square.column] !== 'undefined') {
-      lowerCenter = squareList[filePlus][square.column].hasMine ? 1 : 0;
+    if (squareList[filePlus][column]) {
+      lowerCenter = squareList[filePlus][column].hasMine ? 1 : 0;
     }
 
-    if (typeof squareList[filePlus][columnPlus] !== 'undefined') {
+    if (squareList[filePlus][columnPlus]) {
       lowerRightCorner = squareList[filePlus][columnPlus].hasMine ? 1 : 0;
     }
   }

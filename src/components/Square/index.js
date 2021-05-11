@@ -28,9 +28,8 @@ export default function Square({ squareList, square }) {
 
   return (
     <div className={`Square ${square.hasMine ? 'hasMine' : ''}`} onClick={explore}>
-      { totalMines }
-      {/* { square.totalMines } */}
-      {/* { square.id } */}
+      {/* { totalMines } */}
+      { square.totalMines }
     </div>
   );
 }
