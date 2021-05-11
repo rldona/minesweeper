@@ -8,7 +8,7 @@ export default function Board({ squares }) {
       {
         squares.map((items, index) => (
           items.map((subItems, sIndex) => (
-            <Square key={index + sIndex} square={subItems} squareList={squares} />
+            <Square key={index + sIndex} squareList={squares} square={subItems} />
           ))
         ))
       }

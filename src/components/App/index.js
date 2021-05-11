@@ -7,6 +7,10 @@ import './App.css';
 export default function App() {
   const squares = generateBoard();
 
+  // markSquareNumbers(squares);
+
+  console.log(squares);
+
   return (
     <div className="App">
       <Board squares={squares} />
