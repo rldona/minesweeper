@@ -23,6 +23,7 @@ const generateBoard = () => {
       };
 
       const hastMine = squareList[i][j].id === mines[j];
+
       const totalMines = detectSquareMines(squareList, squareList[i][j]);
 
       if (hastMine) {
@@ -46,40 +47,52 @@ const detectSquareMines = (squareList, square) => {
   const columnLess = square.column - 1;
   const columnPlus = square.column + 1;
 
-  if (fileLess <= 0 || columnLess <= 0 || filePlus > 10 || columnPlus > 10) {
-    upperLeftCorner = 100;
-  } else {
+  console.log(squareList);
+
+  if ((file > 0 && file < 10) && (column > 0 && column <= 10) && (fileLess >= 0) && (filePlus >= 0) && (columnLess >= 0) && (columnPlus >= 0)) {
     if (squareList[fileLess][columnLess]) {
       upperLeftCorner = squareList[fileLess][columnLess].hasMine ? 1 : 0;
+      console.log('upperLeftCorner: ' + upperLeftCorner);
     }
 
     if (squareList[fileLess][column]) {
       upperCenter = squareList[fileLess][column].hasMine ? 1 : 0;
+      console.log('upperCenter: ' + upperCenter);
     }
 
     if (squareList[fileLess][columnPlus]) {
       rightUpperCorner = squareList[fileLess][columnPlus].hasMine ? 1 : 0;
+      console.log('rightUpperCorner: ' + rightUpperCorner);
     }
 
     if (squareList[file][columnLess]) {
       centerLeft = squareList[file][columnLess].hasMine ? 1 : 0;
+      console.log('centerLeft: ' + centerLeft);
     }
 
     if (squareList[filePlus][columnLess]) {
       lowerLeftCorner = squareList[filePlus][columnLess].hasMine ? 1 : 0;
+      console.log('lowerLeftCorner: ' + lowerLeftCorner);
     }
 
     if (squareList[file][columnPlus]) {
       centerRight = squareList[file][columnPlus].hasMine ? 1 : 0;
+      console.log('centerRight: ' + centerRight);
     }
 
     if (squareList[filePlus][column]) {
       lowerCenter = squareList[filePlus][column].hasMine ? 1 : 0;
+      console.log('lowerCenter: ' + lowerCenter);
     }
 
     if (squareList[filePlus][columnPlus]) {
       lowerRightCorner = squareList[filePlus][columnPlus].hasMine ? 1 : 0;
+      console.log('lowerRightCorner: ' + lowerRightCorner);
     }
+  } else {
+    console.log('----');
+    console.log(square);
+    console.log('----');
   }
 
   return upperLeftCorner + upperCenter + rightUpperCorner + centerLeft + lowerLeftCorner + centerRight + lowerCenter + lowerRightCorner;

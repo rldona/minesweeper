@@ -12,10 +12,10 @@ export default function Square({ squareList, square }) {
       return 0;
     }
 
+    console.log(squareList);
     console.log(square);
 
     const totalMinesDetected = detectSquareMines(squareList, square);
-
     setNumber(totalMinesDetected);
 
     // No tiene minas, es una casilla en blanco
@@ -28,8 +28,8 @@ export default function Square({ squareList, square }) {
 
   return (
     <div className={`Square ${square.hasMine ? 'hasMine' : ''}`} onClick={explore}>
-      {/* { totalMines } */}
-      { square.totalMines }
+      { totalMines }
+      {/* { square.totalMines } */}
     </div>
   );
 }

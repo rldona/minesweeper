@@ -7,6 +7,8 @@ import './App.css';
 export default function App() {
   const squares = generateBoard();
 
+  // console.log(squares);
+
   return (
     <div className="App">
       <Board squares={squares} />
