@@ -37,7 +37,8 @@ const generateBoard = () => {
     squareArray.push(
       {
         id: i,
-        type: suffledArray[i]
+        type: suffledArray[i],
+        flag: false
       }
     );
   }

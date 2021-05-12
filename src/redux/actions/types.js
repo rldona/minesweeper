@@ -1,1 +1,2 @@
 export const CHECKED_SQUARE = 'CHECKED_SQUARE';
+export const TOGGLE_FLAG = 'TOGGLE_FLAG';

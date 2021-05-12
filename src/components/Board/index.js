@@ -7,6 +7,8 @@ import './Board.css';
 export default function Board() {
   const squares = useSelector((state) => state.squares);
 
+  console.log(squares);
+
   return (
     <div className="Board">
       {

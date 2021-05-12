@@ -21,3 +21,7 @@
 .Square.hasChecked {
   background-color: bisque;
 }
+
+.Square.hasFlag {
+  background-color: khaki;
+}
