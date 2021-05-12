@@ -1,17 +1,16 @@
-import { generateBoard } from '../../utils';
+import { Provider } from 'react-redux';
+import { store } from '../../redux/store';
 
 import Board from '../Board';
 
 import './App.css';
 
 export default function App() {
-  const squares = generateBoard();
-
-  // console.log(squares);
-
   return (
-    <div className="App">
-      <Board squares={squares} />
-    </div>
+    <Provider store={store}>
+      <div className="App">
+        <Board />
+      </div>
+    </Provider>
   );
 }

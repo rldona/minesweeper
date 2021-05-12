@@ -1,15 +1,17 @@
+import { useSelector } from "react-redux";
+
 import Square from '../Square';
 
 import './Board.css';
 
-export default function Board({ squares }) {
+export default function Board() {
+  const squares = useSelector((state) => state.squares);
+
   return (
     <div className="Board">
       {
-        squares.map((items, index) => (
-          items.map((subItems, sIndex) => (
-            <Square key={index + sIndex} squareList={squares} square={subItems} />
-          ))
+        squares.map((square, index) => (
+          <Square key={index} square={square} />
         ))
       }
     </div>

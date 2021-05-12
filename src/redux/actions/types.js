@@ -1,0 +1,1 @@
+export const CHECKED_SQUARE = 'CHECKED_SQUARE';

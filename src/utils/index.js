@@ -1,104 +1,52 @@
-const _generateMines = () => {
-  let mines = [];
+const configBoard = {
+  width: 10,
+  mines: 20
+}
 
-  for (let i = 1; i < 11; i++) {
-    mines.push(Math.floor((Math.random() * 9) + 1));
+const minesArray = Array(configBoard.mines).fill('mine');
+const emptyArray = Array(configBoard.width * configBoard.width - configBoard.mines).fill('valid');
+const gameArray = emptyArray.concat(minesArray);
+const suffledArray = gameArray.sort(() => Math.random() - 0.5);
+
+const fillNumbers = (squareArray) => {
+  for (let i = 0; i < squareArray.length; i++) {
+    let minesAround = 0;
+
+    const isLeftEdge = (i % configBoard.width === 0);
+    const isRightEdge = (i % configBoard.width === configBoard.width - 1);
+
+    if (squareArray[i].type === 'valid') {
+      if (i > 0 && !isLeftEdge && squareArray[i - 1].type === 'mine') minesAround++;
+      if (i > 9 && !isRightEdge && squareArray[i + 1 - configBoard.width].type === 'mine') minesAround++;
+      if (i > 10 && squareArray[i - configBoard.width].type === 'mine') minesAround++;
+      if (i > 11 && !isLeftEdge && squareArray[i - 1 - configBoard.width].type === 'mine') minesAround++;
+      if (i < 98 && !isRightEdge && squareArray[i + 1].type === 'mine') minesAround++;
+      if (i < 90 && !isLeftEdge && squareArray[i - 1 + configBoard.width].type === 'mine') minesAround++;
+      if (i < 88 && !isRightEdge && squareArray[i + 1 + configBoard.width].type === 'mine') minesAround++;
+      if (i < 89 && squareArray[i + configBoard.width].type === 'mine') minesAround++;
+
+      squareArray[i].minesAround = minesAround > 0 ? minesAround : null;
+    }
   }
-
-  return mines;
 }
 
 const generateBoard = () => {
-  const mines = _generateMines();
+  const squareArray = [];
 
-  var squareList = Array.from(Array(11), () => new Array(11));
-
-  for (let i = 1; i < 11; i++) {
-    for (let j = 1; j < 11; j++) {
-      squareList[i][j] = {
+  for (let i = 0; i < configBoard.width*configBoard.width; i++) {
+    squareArray.push(
+      {
         id: i,
-        file: i,
-        column: j,
-        hasMine: false
-      };
-
-      const hastMine = squareList[i][j].id === mines[j];
-
-      const totalMines = detectSquareMines(squareList, squareList[i][j]);
-
-      if (hastMine) {
-        squareList[i][j].hasMine = true;
-      } else {
-        squareList[i][j].totalMines = totalMines > 0 ? totalMines : null;
+        type: suffledArray[i]
       }
-    }
+    );
   }
 
-  return squareList;
-}
+  fillNumbers(squareArray);
 
-const detectSquareMines = (squareList, square) => {
-  let upperLeftCorner = 0, upperCenter = 0, rightUpperCorner = 0, centerLeft = 0, lowerLeftCorner = 0, centerRight = 0, lowerCenter = 0, lowerRightCorner = 0;
-
-  const file = square.file;
-  const column = square.column;
-  const fileLess = square.file - 1;
-  const filePlus = square.file + 1;
-  const columnLess = square.column - 1;
-  const columnPlus = square.column + 1;
-
-  console.log(squareList);
-
-  if ((file > 0 && file < 10) && (column > 0 && column <= 10) && (fileLess >= 0) && (filePlus >= 0) && (columnLess >= 0) && (columnPlus >= 0)) {
-    if (squareList[fileLess][columnLess]) {
-      upperLeftCorner = squareList[fileLess][columnLess].hasMine ? 1 : 0;
-      console.log('upperLeftCorner: ' + upperLeftCorner);
-    }
-
-    if (squareList[fileLess][column]) {
-      upperCenter = squareList[fileLess][column].hasMine ? 1 : 0;
-      console.log('upperCenter: ' + upperCenter);
-    }
-
-    if (squareList[fileLess][columnPlus]) {
-      rightUpperCorner = squareList[fileLess][columnPlus].hasMine ? 1 : 0;
-      console.log('rightUpperCorner: ' + rightUpperCorner);
-    }
-
-    if (squareList[file][columnLess]) {
-      centerLeft = squareList[file][columnLess].hasMine ? 1 : 0;
-      console.log('centerLeft: ' + centerLeft);
-    }
-
-    if (squareList[filePlus][columnLess]) {
-      lowerLeftCorner = squareList[filePlus][columnLess].hasMine ? 1 : 0;
-      console.log('lowerLeftCorner: ' + lowerLeftCorner);
-    }
-
-    if (squareList[file][columnPlus]) {
-      centerRight = squareList[file][columnPlus].hasMine ? 1 : 0;
-      console.log('centerRight: ' + centerRight);
-    }
-
-    if (squareList[filePlus][column]) {
-      lowerCenter = squareList[filePlus][column].hasMine ? 1 : 0;
-      console.log('lowerCenter: ' + lowerCenter);
-    }
-
-    if (squareList[filePlus][columnPlus]) {
-      lowerRightCorner = squareList[filePlus][columnPlus].hasMine ? 1 : 0;
-      console.log('lowerRightCorner: ' + lowerRightCorner);
-    }
-  } else {
-    console.log('----');
-    console.log(square);
-    console.log('----');
-  }
-
-  return upperLeftCorner + upperCenter + rightUpperCorner + centerLeft + lowerLeftCorner + centerRight + lowerCenter + lowerRightCorner;
+  return squareArray;
 }
 
 export {
-  generateBoard,
-  detectSquareMines
+  generateBoard
 }

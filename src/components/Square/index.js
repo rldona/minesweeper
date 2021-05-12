@@ -1,35 +1,25 @@
-import { useState } from 'react';
-import { detectSquareMines } from '../../utils';
+import { useDispatch } from "react-redux";
+import { checkedSquare } from '../../redux/actions';
 
 import './Square.css';
 
-export default function Square({ squareList, square }) {
-  const [ totalMines, setNumber ] = useState(null);
+export default function Square({ square }) {
+  const dispatch = useDispatch();
 
   const explore = () => {
-    if (square.hasMine) {
+    if (square.type === 'mine') {
       alert('Game over');
-      return 0;
+    } else {
+      if (square.minesAround > 0) {
+        dispatch(checkedSquare(square.id));
+      }
     }
-
-    console.log(squareList);
     console.log(square);
-
-    const totalMinesDetected = detectSquareMines(squareList, square);
-    setNumber(totalMinesDetected);
-
-    // No tiene minas, es una casilla en blanco
-    // if (!totalMinesDetected) {
-    //   console.log('No tiene minas alrededor');
-    //   setNumber(null);
-    //   // Marca la zona y descubre los número más cercanos
-    // }
   }
 
   return (
-    <div className={`Square ${square.hasMine ? 'hasMine' : ''}`} onClick={explore}>
-      { totalMines }
-      {/* { square.totalMines } */}
+    <div id={square.id} className={`Square ${square.type === 'mine' ? 'hasMine' : square.checked ? 'hasChecked' : '' }`} onClick={explore}>
+      {square.minesAround}
     </div>
   );
 }
