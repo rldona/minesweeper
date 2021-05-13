@@ -13,7 +13,6 @@ export default function Square({ square, gameover }) {
 
     if (e.type === 'click') {
       if (square.type === 'mine') {
-        alert('Game over');
         dispatch(setBoardVisible(square.id));
         return 0;
       }
