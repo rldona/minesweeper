@@ -1,8 +1,25 @@
 .Board {
+  position: relative;
   display: flex;
   flex-wrap: wrap;
   width: 400px;
   height: 400px;
   margin: 70px auto;
   background-color: beige;
+}
+
+.gameover {
+  width: 400px;
+  height: 400px;
+  background-color: rgb(255 255 255 / 72%);
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-weight: 600;
+  font-size: 35px;
+  font-family: 'Arial';
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

@@ -3,13 +3,13 @@ import { checkedSquare, checkedEmptySquare, toggleFlag, setBoardVisible } from '
 
 import './Square.css';
 
-export default function Square({ square }) {
+export default function Square({ square, gameover }) {
   const dispatch = useDispatch();
 
   const explore = (e) => {
     e.preventDefault();
 
-    console.log(square);
+    console.log(gameover);
 
     if (e.type === 'click') {
       if (square.type === 'mine') {

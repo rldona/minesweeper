@@ -45,7 +45,8 @@ const listReducer = (state, action) => {
 
       return {
         ...state,
-        squares: newArray
+        squares: newArray,
+        gameover: true
       }
 
     default:
