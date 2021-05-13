@@ -11,12 +11,13 @@
 .gameover {
   width: 400px;
   height: 400px;
-  background-color: rgb(255 255 255 / 72%);
+  background-color: rgb(255 147 147 / 72%);
   position: absolute;
   top: 0;
   left: 0;
   font-weight: 600;
-  font-size: 35px;
+  font-size: 40px;
+  color: #FFF;
   font-family: 'Arial';
   z-index: 9999;
   display: flex;

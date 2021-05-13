@@ -29,7 +29,7 @@
 .Square span {
   width: 40px;
   height: 40px;
-  background-color: blue;
+  background-color: #607d8b;
   position: absolute;
   top: 0;
   left: 0;
@@ -41,7 +41,7 @@
 }
 
 .Square span:hover {
-  background-color: cornflowerblue;
+  background-color: #7cacc3;
 }
 
 .container {
