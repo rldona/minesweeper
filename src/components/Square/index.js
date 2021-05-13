@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { checkedSquare, setFlag } from '../../redux/actions';
+import { checkedSquare, checkedEmptySquare, toggleFlag, setBoardVisible } from '../../redux/actions';
 
 import './Square.css';
 
@@ -9,36 +9,47 @@ export default function Square({ square }) {
   const explore = (e) => {
     e.preventDefault();
 
+    console.log(square);
+
     if (e.type === 'click') {
       if (square.type === 'mine') {
         alert('Game over');
+        dispatch(setBoardVisible(square.id));
+        return 0;
+      }
+
+      if (square.flag) {
+        console.log('flag!!');
+        return 0;
+      }
+
+      if (square.minesAround > 0) {
+        dispatch(checkedSquare(square.id));
       } else {
-        if (square.minesAround > 0) {
-          dispatch(checkedSquare(square.id));
-        }
+        console.log('empty');
+        dispatch(checkedEmptySquare(square.id));
       }
     } else {
-      if (square.type === 'mine' || square.flag) {
-        dispatch(setFlag(square.id));
-      }
+      if (square.type === 'mine' || square.flag) dispatch(toggleFlag(square.id));
     }
-
-    console.log(square);
   }
 
   const changeClass = () => {
     let classComplex = '';
 
-    if (square.type === 'mine') classComplex = 'hasMine';
-    if (square.checked) classComplex = 'hasChecked';
-    if (square.flag) classComplex = 'hasFlag';
+    if (square.type === 'mine') classComplex = ' hasMine';
+    if (square.checked) classComplex = classComplex + ' hasChecked';
+    if (square.flag) classComplex = classComplex + ' hasFlag';
 
     return `Square ${classComplex}`;
   }
 
   return (
-    <div id={square.id} className={changeClass()} onClick={explore} onContextMenu={explore}>
-      {square.minesAround}
+    <div className="container">
+      <div id={square.id} className={changeClass()} onClick={explore} onContextMenu={explore}>
+        { !square.checked ? <span></span> : null }
+        {square.minesAround}
+      </div>
     </div>
   );
 }

@@ -8,6 +8,11 @@ const emptyArray = Array(configBoard.width * configBoard.width - configBoard.min
 const gameArray = emptyArray.concat(minesArray);
 const suffledArray = gameArray.sort(() => Math.random() - 0.5);
 
+const findEmptySquare = (arr) => {
+  // TODO: hacer la recursividad
+  return arr;
+}
+
 const fillNumbers = (squareArray) => {
   for (let i = 0; i < squareArray.length; i++) {
     let minesAround = 0;
@@ -49,5 +54,6 @@ const generateBoard = () => {
 }
 
 export {
-  generateBoard
+  generateBoard,
+  findEmptySquare
 }

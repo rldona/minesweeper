@@ -15,7 +15,7 @@
 
 
 .Square.hasMine {
-  background-color: #f44336;
+  background-color: #f44336!important;
 }
 
 .Square.hasChecked {
@@ -24,4 +24,26 @@
 
 .Square.hasFlag {
   background-color: khaki;
+}
+
+.Square span {
+  width: 40px;
+  height: 40px;
+  background-color: blue;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 999;
+}
+
+.Square span.mine {
+  background-color: #f44336;
+}
+
+.Square span:hover {
+  background-color: cornflowerblue;
+}
+
+.container {
+  position: relative;
 }

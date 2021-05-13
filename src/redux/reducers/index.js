@@ -1,7 +1,11 @@
 import {
   CHECKED_SQUARE,
-  TOGGLE_FLAG
+  CHECKED_EMPTY_SQUARE,
+  TOGGLE_FLAG,
+  SET_VISIBLE_BOARD
 } from '../actions/types';
+
+import { findEmptySquare } from '../../utils';
 
 const listReducer = (state, action) => {
   const newArray = [...state.squares];
@@ -15,11 +19,29 @@ const listReducer = (state, action) => {
         squares: newArray
       }
 
+    case CHECKED_EMPTY_SQUARE:
+      newArray[action.payload].checked = true;
+
+      const newArrayWidthEmptysMarked = findEmptySquare(newArray);
+
+      return {
+        ...state,
+        squares: newArrayWidthEmptysMarked
+      }
+
     case TOGGLE_FLAG:
       newArray[action.payload].flag = newArray[action.payload].flag ? false : true;
       newArray[action.payload].type = newArray[action.payload].type ? null : 'mine';
 
-      console.log(newArray[action.payload].flag);
+      return {
+        ...state,
+        squares: newArray
+      }
+
+    case SET_VISIBLE_BOARD:
+      for (let i = 0; i < newArray.length; i++) {
+        newArray[i].checked = true;
+      }
 
       return {
         ...state,
