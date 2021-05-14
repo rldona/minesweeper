@@ -10,6 +10,7 @@ export default function Board() {
 
   return (
     <div className="container">
+      <div>{ gameover ? ':(' : ':)'}</div>
       <div className="Board">
         {
           squares.map((square, index) => (
