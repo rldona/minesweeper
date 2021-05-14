@@ -6,7 +6,7 @@ import {
   RESET_GAME
 } from '../actions/types';
 
-import { findEmptySquare } from '../../utils';
+import { generateBoard, findEmptySquare } from '../../utils';
 
 const listReducer = (state, action) => {
   const newArray = [...state.squares];
@@ -51,9 +51,9 @@ const listReducer = (state, action) => {
       }
 
     case RESET_GAME:
+      console.log('RESET_GAME');
       return {
-        ...state,
-        squares: newArray,
+        squares: generateBoard(),
         gameover: false
       }
 

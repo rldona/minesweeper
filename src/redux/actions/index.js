@@ -26,7 +26,6 @@ export const setBoardVisible = (item) => ({
   payload: item
 });
 
-export const resetGame = (item) => ({
-  type: RESET_GAME,
-  payload: item
+export const resetGame = () => ({
+  type: RESET_GAME
 });
