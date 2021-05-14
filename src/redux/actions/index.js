@@ -2,7 +2,8 @@ import {
   CHECKED_SQUARE,
   CHECKED_EMPTY_SQUARE,
   TOGGLE_FLAG,
-  SET_VISIBLE_BOARD
+  SET_VISIBLE_BOARD,
+  RESET_GAME
 } from './types';
 
 export const checkedSquare = (item) => ({
@@ -22,5 +23,10 @@ export const toggleFlag = (item) => ({
 
 export const setBoardVisible = (item) => ({
   type: SET_VISIBLE_BOARD,
+  payload: item
+});
+
+export const resetGame = (item) => ({
+  type: RESET_GAME,
   payload: item
 });

@@ -4,8 +4,42 @@
   flex-wrap: wrap;
   width: 400px;
   height: 400px;
-  margin: 70px auto;
+  margin: auto;
   background-color: beige;
+}
+
+.panel-info {
+  width: 400px;
+  margin: 0 auto;
+  padding: 10px 20px;
+  background-color: aquamarine;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.flags-counter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.flags-counter span {
+  margin-right: 10px;
+  font-size: 18px;
+}
+
+.timer-box {
+  font-size: 18px;
+}
+
+button {
+  border: 2px solid #009688;
+  border-radius: 5px;
+  display: flex;
+  padding: 7px;
+  cursor: pointer;
+  background-color: transparent;
 }
 
 .gameover {

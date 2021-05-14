@@ -2,7 +2,8 @@ import {
   CHECKED_SQUARE,
   CHECKED_EMPTY_SQUARE,
   TOGGLE_FLAG,
-  SET_VISIBLE_BOARD
+  SET_VISIBLE_BOARD,
+  RESET_GAME
 } from '../actions/types';
 
 import { findEmptySquare } from '../../utils';
@@ -47,6 +48,13 @@ const listReducer = (state, action) => {
         ...state,
         squares: newArray,
         gameover: true
+      }
+
+    case RESET_GAME:
+      return {
+        ...state,
+        squares: newArray,
+        gameover: false
       }
 
     default:
